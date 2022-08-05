@@ -2,6 +2,7 @@ var $main = $('.container');
 var $currentDate = $('#currentDay');
 var $saveEvent = $('.saveBtn');
 var $saveIcon = $('i');
+var $notification = $('.toast');
 
 //An array of objects holding all events
 var currentEvents = [];
@@ -53,25 +54,55 @@ $saveEvent.on('click', function(event){//This works for the button, but not for 
 
     if(localStorage.getItem('allEvents')){//if allEvents exists in local storage
         var eventSaved = JSON.parse(localStorage.getItem('allEvents'));
-        var eventExists = false;
+        var eventExists = false;//Checks if there was alreay an event that exists for the same time
+        var eventCheck = 0;
+
+        //Checks if an event already exists in local storage and overwrites old event
         for(var i = 0; i < eventSaved.length; i++){
             if(newEvent.time === eventSaved[i].time){//Overwrite an old event
+                var eventBefore = eventSaved[i].event;
+                var eventAfter = newEvent.event;
                 eventSaved[i] = newEvent;
                 currentEvents = eventSaved;
                 localStorage.setItem('allEvents', JSON.stringify(eventSaved));
                 eventExists = true;
+                if(eventBefore !== "" && eventAfter === "" || eventBefore !== eventAfter){//Display an event notification if the user removes their event description
+                    showNotification();
+                }
             }
         }
-        if(!eventExists){//Adds a new event to local storage
+        
+        //If an event does not exist, add it to local storage
+        if(!eventExists){
             eventSaved.push(newEvent);
             currentEvents = eventSaved;
             localStorage.setItem('allEvents', JSON.stringify(eventSaved));
+            //Display notification if the event description is not blank
+            if(newEvent.event !== ""){
+                showNotification();
+            }
         }
-    }else{
+    }else{//Creates a new localstorage
         currentEvents.push(newEvent);
         localStorage.setItem('allEvents', JSON.stringify(currentEvents));
+            //Display notification if the event description is not blank
+        if(newEvent.event !== ""){
+            showNotification();
+        }
     }
-
 })
+
+function showNotification(){
+    var counter = 1;
+    $notification.addClass('show');
+    var timerInterval = setInterval(function(){
+        if(counter === 0){
+            clearInterval(timerInterval);
+            $notification.attr('class', 'toast position-fixed fixed-top mx-auto');
+        }else{
+            counter--;
+        }
+    },1500 )   
+}
 
 initalize();

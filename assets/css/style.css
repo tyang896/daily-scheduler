@@ -74,6 +74,6 @@ textarea {
   transition: all 0.3s ease-in-out;
 }
 
-.saveBtn:active {
+.saveBtn:hover {
   color: black;
 }
