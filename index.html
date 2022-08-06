@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!--Third party apis-->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -18,11 +19,12 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
+    <!--local link to css file-->
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Work Day Scheduler</title>
   </head>
   <body>
-    <!--Notification box-->
+    <!--Notification box. It is hidden by default-->
     <div class="toast position-fixed fixed-top mx-auto">
       <div class="toast-header">
         <strong class="me-auto">Notification</strong>
@@ -38,8 +40,8 @@
       <p class="lead">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
     </header>
-    <div class="container">
-      <!-- Timeblocks go here -->
+    <main class="container">
+      <!-- Timeblocks -->
       <div class="time-block mb-3">
         <div class="row">
           <div class="hour col-2">
@@ -121,11 +123,12 @@
           <button class="saveBtn col-1 mb-1" data-time="17"><i class="fa-solid fa-floppy-disk"></i></button>
         </div>
       </div>
-    </div>
-
+    </main>
+    <!--Third party apis-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://kit.fontawesome.com/76f65e4fb7.js" crossorigin="anonymous"></script>
+    <!--Link to local javascript file-->
     <script src="./assets/js/script.js"></script>
   </body>
 </html>

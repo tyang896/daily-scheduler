@@ -1,17 +1,21 @@
-var $main = $('.container');
 var $currentDate = $('#currentDay');
 var $saveEvent = $('.saveBtn');
-var $saveIcon = $('i');
 var $notification = $('.toast');
 
 //An array of objects holding all events
 var currentEvents = [];
 
+//Display date in the following format: Monday, January 1st
 $currentDate.text(moment().format('dddd, MMMM Do'));
 
+
 function initalize(){
-    var currentHour = moment().format('H');//military time
-    for(var i = 9; i < 18; i++){//modify the '18' if you want to add more timeblocks in the future
+    //currentHour is set to military time
+    var currentHour = moment().format('H');
+
+    //Color code time blocks with past, present and future
+    //modify the '18' if you want to add more timeblocks in the future
+    for(var i = 9; i < 18; i++){
         if(i < currentHour){
             $('textarea.' + i).addClass('past');
         }else if(i == currentHour){
@@ -20,6 +24,7 @@ function initalize(){
             $('textarea.' + i).addClass('future');
         }
     }
+    //Populate timeblocks with events from local storage
     if(localStorage.getItem('allEvents')){
         var eventSaved = JSON.parse(localStorage.getItem('allEvents'));
         currentEvents = eventSaved;
@@ -29,9 +34,13 @@ function initalize(){
     }
 }
 
-setInterval(function(){//This function runs every minute
-    var currentHour = moment().format('H');//military time
-    for(var i = 9; i < 18; i++){//modify the '18' if you want to add more timeblocks in the future
+//Checks the current hour every minute and updates the timeblocks
+setInterval(function(){
+     //currentHour is set to military time
+    var currentHour = moment().format('H');
+    //Color code time blocks with past, present and future
+    //modify the '18' if you want to add more timeblocks in the future
+    for(var i = 9; i < 18; i++){
         if(i < currentHour){
             $('textarea.' + i).attr('class', "description col mb-1 past " + i );
         }else if(i == currentHour){
@@ -42,7 +51,8 @@ setInterval(function(){//This function runs every minute
     }
 }, 60000);
 
-$saveEvent.on('click', function(event){//This works for the button, but not for the tag that's  inside the button
+//Saves the event to local storage and notifies the user
+$saveEvent.on('click', function(event){
     event.preventDefault();
     var $element = $(event.currentTarget);
     var $eventInfo = $element.prev().val();
@@ -51,11 +61,10 @@ $saveEvent.on('click', function(event){//This works for the button, but not for 
         event: $eventInfo,
         time: $timeInfo,
     }
-
-    if(localStorage.getItem('allEvents')){//if allEvents exists in local storage
+    //Checks if a local storage already exists before creating one
+    if(localStorage.getItem('allEvents')){
         var eventSaved = JSON.parse(localStorage.getItem('allEvents'));
         var eventExists = false;//Checks if there was alreay an event that exists for the same time
-        var eventCheck = 0;
 
         //Checks if an event already exists in local storage and overwrites old event
         for(var i = 0; i < eventSaved.length; i++){
@@ -66,13 +75,15 @@ $saveEvent.on('click', function(event){//This works for the button, but not for 
                 currentEvents = eventSaved;
                 localStorage.setItem('allEvents', JSON.stringify(eventSaved));
                 eventExists = true;
-                if(eventBefore !== "" && eventAfter === "" || eventBefore !== eventAfter){//Display an event notification if the user removes their event description
+
+                //Display an event notification if the user removes their event description or they change their event description from the same timeblock
+                if(eventBefore !== "" && eventAfter === "" || eventBefore !== eventAfter){
                     showNotification();
                 }
             }
         }
         
-        //If an event does not exist, add it to local storage
+        //If an event does not already exist in local storage, add event to local storage
         if(!eventExists){
             eventSaved.push(newEvent);
             currentEvents = eventSaved;
@@ -85,13 +96,14 @@ $saveEvent.on('click', function(event){//This works for the button, but not for 
     }else{//Creates a new localstorage
         currentEvents.push(newEvent);
         localStorage.setItem('allEvents', JSON.stringify(currentEvents));
-            //Display notification if the event description is not blank
+        //Display notification if the event description is not blank
         if(newEvent.event !== ""){
             showNotification();
         }
     }
-})
+})//End of event listener code
 
+//Shows a notification for 1.5 seconds
 function showNotification(){
     var counter = 1;
     $notification.addClass('show');

@@ -17,6 +17,7 @@ textarea {
   padding: 10px;
 }
 
+/*Styles the header*/
 .jumbotron {
   text-align: center;
   background-color: transparent;
@@ -25,6 +26,7 @@ textarea {
   border-bottom: 10px solid black;
 }
 
+/*Formatting for user text input*/
 .description {
   white-space: pre-wrap;
 }
@@ -40,27 +42,32 @@ textarea {
   border-top: 1px solid white;
 }
 
+/*Style and formatting for all the hours*/
 .hour {
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
 }
 
+/*Changes timeblock to color gray*/
 .past {
   background-color: #d3d3d3;
   color: var(--dark);
 }
 
+/*Changes timeblock to color red*/
 .present {
   background-color: #ff6961;
   color: var(--dark);
 }
 
+/*Change timeblock to color green*/
 .future {
   background-color: #77dd77;
   color: var(--dark);
 }
 
+/*Styling for save button*/
 .saveBtn {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
@@ -69,11 +76,13 @@ textarea {
   color: white;
 }
 
+/*Effect for button icon*/
 .saveBtn i:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
 }
 
+/*Changes color of button icon*/
 .saveBtn:hover {
   color: black;
 }
