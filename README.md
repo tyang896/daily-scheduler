@@ -22,22 +22,22 @@ You can view a live demonstration of the application here: https://tyang896.gith
 
 1. Open the `index.html` file using your desired browser of choice. You should get a webpage that looks similar to the following:
 
-![Webpage Screenshot](assets/images/Screenshot%202022-08-04%20at%2015-58-38%20Work%20Day%20Scheduler.png)
+![Webpage Screenshot](assets/images/Screenshot_Step_1.png)
 
 
 (Note: the colors for each timeblock may differ for you because of the time and date. Gray = past, red = present, and green = future) 
 
 2. To add an event, click on the the timeblock you wish to add an event.
 
-![Webpage Screenshot](assets/images/Screen%20Shot%202022-08-05%20at%208.43.43%20PM.png)
+![Webpage Screenshot](assets/images/Screenshot_Step_2.png)
 
 3. To save an event, click on the blue button.
 
-![Webpage Screenshot](assets/images/Screen%20Shot%202022-08-05%20at%208.46.22%20PM.png)
+![Webpage Screenshot](assets/images/Screenshot_Step_3.png)
 
 4. A notification box will appear once the event has been saved. 
 
-![Webpage Screenshot](assets/images/Screen%20Shot%202022-08-05%20at%208.56.50%20PM.png)
+![Webpage Screenshot](assets/images/Screenshot_Step_4.png)
 
 5. To remove an event, delete the contents inside of the event box and click the blue button to save your changes. A notification box will appear to notify you when the change was successful.
 
